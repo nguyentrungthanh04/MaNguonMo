@@ -24,6 +24,7 @@ class ProductController
         include 'app/views/product/list.php';
     }
 
+    
     public function add(){
         $errors =[];
 
