@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html>
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Form Name -->
-    <legend>Thêm sản phẩm mới</legend>
+    <title>Thêm sản phẩm mới</title>
 
-    <!-- Gọi tệp CSS vào trong HTML -->
+    <!-- Gọi tệp CSS Bootstrap từ CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Gọi tệp CSS của bạn (nếu có) -->
     <link rel="stylesheet" href="/public/css/style.css">
+
+    <!-- Gọi jQuery và Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function validateForm() {
             let name = document.getElementById('name').value;
             let price = document.getElementById('price').value;
             let errors = [];
-            if (name.length < 10 || name.length > 100) {}
-            errors.push('Tên sản phẩm phải có từ 10 đến 100 ký tự.');
+            if (name.length < 10 || name.length > 100) {
+                errors.push('Tên sản phẩm phải có từ 10 đến 100 ký tự.');
+            }
             if (price <= 0 || isNaN(price)) {
                 errors.push('Giá phải là một số dương lớn hơn 0.');
             }
@@ -35,51 +36,39 @@
 </head>
 
 <body>
-    <form class="form-horizontal" method="POST" action="/MaNguonMo/Product/add">
-        <fieldset>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Thêm sản phẩm mới</h2>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="name">Tên sản phẩm</label>
-                <div class="col-md-4">
-                    <input id="name" name="name" placeholder="Nhập tên sản phẩm" class="form-control input-md" required="" type="text">
+        <form class="form-horizontal" method="POST" action="/MaNguonMo/Product/add" onsubmit="return validateForm();">
+            <fieldset>
 
+                <!-- Tên sản phẩm -->
+                <div class="mb-3">
+                    <label class="form-label" for="name">Tên sản phẩm</label>
+                    <input id="name" name="name" placeholder="Nhập tên sản phẩm" class="form-control" required type="text">
                 </div>
-            </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="description">Mô tả</label>
-                <div class="col-md-4">
-                    <input id="description" name="description" placeholder="Nhập mô tả" class="form-control input-md" required="" type="text">
-
+                <!-- Mô tả sản phẩm -->
+                <div class="mb-3">
+                    <label class="form-label" for="description">Mô tả</label>
+                    <input id="description" name="description" placeholder="Nhập mô tả" class="form-control" required type="text">
                 </div>
-            </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="price">Giá tiền</label>
-                <div class="col-md-4">
-                    <input id="price" name="price" placeholder="Nhập giá tiền" class="form-control input-md" required="" type="number">
-
+                <!-- Giá tiền -->
+                <div class="mb-3">
+                    <label class="form-label" for="price">Giá tiền</label>
+                    <input id="price" name="price" placeholder="Nhập giá tiền" class="form-control" required type="number">
                 </div>
-            </div>
 
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
-                <div class="col-md-4">
-                    <button type='submit' class="btn btn-primary">Thêm</button>
-                    <a href="/MaNguonMo/Product/list" class="btn btn-primary">Quay lai</a>
+                <!-- Button -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-success mx-2">Thêm</button>
+                    <a href="/MaNguonMo/Product/list" class="btn btn-secondary mx-2">Quay lại</a>
                 </div>
-            </div>
 
-
-        </fieldset>
-    </form>
-
-
+            </fieldset>
+        </form>
+    </div>
 </body>
-
 
 </html>
